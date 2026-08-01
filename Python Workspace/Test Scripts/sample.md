@@ -15,9 +15,7 @@ This is a sample Markdown file created in the AI Automations folder.
   - If the target path has subfolders, it lists each subfolder with its total size and file count.
   - If it has no subfolders, it lists the files and folders inside it.
   - It skips inaccessible files or folders caused by permission issues.
-- Example usage:
-  - `python ai_folder_sizes.py`
-  - `python ai_folder_sizes.py "D:\Projects"`
+
 
 ## Features
 - Easy to read
