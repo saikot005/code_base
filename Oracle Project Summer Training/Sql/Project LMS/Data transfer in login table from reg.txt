@@ -1,0 +1,16 @@
+set serveroutput on
+create or replace procedure transal is
+cursor c1 is select name,reg_no from registration2017;
+uname registration2017.name%type;
+pass registration2017.reg_no%type;
+
+begin
+for i in c1 loop
+select name,reg_no into uname,pass from registration2017;
+
+insert into login(User_name,Password)
+values(uname,pass+987);
+exit when c1%notfound;
+end loop;
+end;
+/

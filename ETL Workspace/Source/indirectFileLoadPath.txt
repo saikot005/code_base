@@ -1,0 +1,3 @@
+C:\Users\saiko\Documents\Informatica\Source\std1.txt
+C:\Users\saiko\Documents\Informatica\Source\std2.txt
+C:\Users\saiko\Documents\Informatica\Source\std3.txt

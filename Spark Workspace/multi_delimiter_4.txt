@@ -1,0 +1,4 @@
+id,name,skill
+1,name1,a-b-c
+2,name2,b-c-d-e
+3,name3,a-c

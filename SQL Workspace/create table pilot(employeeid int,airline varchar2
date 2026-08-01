@@ -1,0 +1,154 @@
+create table pilot(employeeid int,airline varchar2(200),name varchar2(200),salary int);
+
+insert all
+into pilot values(70007,'Airbus 380','Kim',60000)
+into pilot values(70002,'Boeing','Laura',20000)
+into pilot values(10027,'Airbus 380','Will',80050)
+into pilot values(10778,'Airbus 380','Warren',80780)
+into pilot values(115585,'Boeing','Smith',25000)
+into pilot values(114070,'Airbus 380','Katy',7800)
+SELECT 1 FROM dual;
+
+
+select airline from pilot
+group by airline
+having sum(salary) > (select avg(salary) from pilot)
+
+
+
+
+create table sales(years int,months varchar(50),amount int);
+
+insert into sales values(2020,'JAN',1100);
+insert into sales values(2020,'FEB',1000);
+insert into sales values(2020,'MAR',1200);
+
+insert into sales values(2021,'JAN',1900);
+insert into sales values(2021,'FEB',1500);
+insert into sales values(2021,'MAR',NULL);
+
+insert into sales values(2022,'JAN',NULL);
+insert into sales values(2022,'FEB',800);
+insert into sales values(2022,'MAR',NULL);
+
+insert into sales values(2023,'JAN',900);
+insert into sales values(2023,'FEB',700);
+insert into sales values(2023,'MAR',1200);
+insert into sales values(2023,'APR',1200);
+
+
+
+SELECT * FROM SALES
+PIVOT(
+    SUM(AMOUNT) FOR YEARS IN (2020,2021,2022,2023)
+);
+
+SELECT 	MONTHS,
+		SUM(CASE WHEN YEARS=2020 THEN AMOUNT END) AS "2020",
+        SUM(CASE WHEN YEARS=2021 THEN AMOUNT END) AS "2021",
+        SUM(CASE WHEN YEARS=2022 THEN AMOUNT END) AS "2022",
+        SUM(CASE WHEN YEARS=2023 THEN AMOUNT END) AS "2023"
+FROM SALES
+GROUP BY MONTHS;
+
+
+
+
+
+
+
+
+
+
+create table sales(model_year int,product_name varchar(50),product_count int);
+
+insert into sales values(2016,'children bicycle',3);
+insert into sales values(2016,'comfort bicycle',3);
+insert into sales values(2016,'crusiers bicycle',9);
+insert into sales values(2016,'cyclocross bicycle',2);
+insert into sales values(2016,'electric bikes',1);
+insert into sales values(2016,'mountain bikes',8);
+insert into sales values(2016,'road bikes',0);
+
+insert into sales values(2017,'children bicycle',19);
+insert into sales values(2017,'comfort bicycle',10);
+insert into sales values(2017,'crusiers bicycle',19);
+insert into sales values(2017,'cyclocross bicycle',2);
+insert into sales values(2017,'electric bikes',2);
+insert into sales values(2017,'mountain bikes',21);
+insert into sales values(2017,'road bikes',12);
+
+insert into sales values(2018,'children bicycle',37);
+insert into sales values(2018,'comfort bicycle',17);
+insert into sales values(2018,'crusiers bicycle',50);
+insert into sales values(2018,'cyclocross bicycle',6);
+insert into sales values(2018,'electric bikes',21);
+insert into sales values(2018,'mountain bikes',31);
+insert into sales values(2018,'road bikes',42);
+
+insert into sales values(2019,'children bicycle',0);
+insert into sales values(2019,'comfort bicycle',0);
+insert into sales values(2019,'crusiers bicycle',0);
+insert into sales values(2019,'cyclocross bicycle',0);
+insert into sales values(2019,'electric bikes',0);
+insert into sales values(2019,'mountain bikes',0);
+insert into sales values(2019,'road bikes',6);
+
+
+
+
+
+select * from sales;
+
+select * from sales
+pivot(
+    sum(product_count) for product_name in ('children bicycle','comfort bicycle','crusiers bicycle','cyclocross bicycle','electric bikes','mountain bikes')
+);
+
+create table sales2(id int,years int,prod_name varchar(100),price int);
+
+insert into sales2 values(5,2020,'cpu',65);
+insert into sales2 values(17,2020,'cpu',65);
+insert into sales2 values(11,2020,'pen',11);
+insert into sales2 values(12,2020,'pencil',90);
+insert into sales2 values(16,2021,'mouse',68);
+insert into sales2 values(4,2021,'mouse',68);
+insert into sales2 values(1,2021,'pen',89);
+insert into sales2 values(10,2021,'pen',100);
+insert into sales2 values(13,2021,'pen',89);
+insert into sales2 values(7,2021,'pencil',76);
+insert into sales2 values(19,2021,'pencil',76);
+
+
+
+select * from
+    (select years,prod_name,price from sales2) derivredTable
+pivot(
+    sum(price) for prod_name in ('cpu','pen','pencil','mouse')
+)
+
+
+
+
+create table sales3(category varchar2(100),"2015" int,"2016" int, "2017" int, "2018" int);
+
+insert into sales3 values('Hard Drinks',2000,1500,1200,2000);
+insert into sales3 values('Soft Drinks',1000,1800,1200,2000);
+
+
+select * from sales3
+unpivot(
+    amount for years in ("2015","2016","2017","2018")
+);
+
+select * from (
+    select category,'2015' as years,"2015" as amount from sales3
+    union
+    select category,'2016' as years,"2016" as amount from sales3
+    union
+    select category,'2017' as years,"2017" as amount from sales3
+    union
+    select category,'2018' as years,"2018" as amount from sales3
+)
+
+

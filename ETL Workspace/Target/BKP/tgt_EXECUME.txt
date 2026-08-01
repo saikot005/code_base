@@ -1,0 +1,6 @@
+#col1,col2
+10,a
+20,a,b
+30,b,c
+40,c,null
+50,null,d

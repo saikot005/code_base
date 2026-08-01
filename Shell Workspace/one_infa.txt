@@ -1,0 +1,326 @@
+#!/bin/bash
+
+####################################################################################################################
+#-------------------------------------------------- one_xml.sh ----------------------------------------------------#
+####################################################################################################################
+#                                                                                                                  #
+#Author:		SAIKOT ROY                                                                                         #
+#Date:			21/01/2023                                                                                         #
+#Description:	This script will split informatica objects under xml files into different files by category        #
+#Modified:		26/08/2023                                                                                         #
+#                                                                                                                  #
+####################################################################################################################
+
+#CHECKING THE MAIN DIRECTORY
+if [ -d /home/METNET/aq293302/INFAScripts ]; then
+    echo "-----> INFAScripts directory presant"
+else
+    echo "-----> No directory named with INFAScripts"
+    echo "-----> Execution terminated with ERROR !!"
+    exit 1
+fi
+
+
+# CHANGING THE PATH
+vpath=/home/METNET/aq293302/INFAScripts
+cd $vpath
+
+
+# CHECKING THE CONFIG FILE AVAILABILITY & NO OF ARGUMENTS
+if [ -f 'one_xml_config.txt' ];then             
+    echo "-----> Config file exists in the directory !!"
+	if [ `cat one_xml_config.txt | wc -l | cut -d' ' -f1` -eq 6 ]; then
+		echo "-----> Number of Paramaeters are valid in config file !!"
+    else
+        echo "-----> Number of Paramaeters are mismatched in config file !!"
+    fi
+else
+    echo "-----> Congif file is not presant in the directory !!"
+    echo "-----> Execution terminated with ERROR !!"
+    exit 1
+fi
+
+
+# EXTRACTING THE CONFIG-FILE VALUES
+vuser=`cat one_xml_config.txt | grep -i "user" | cut -d"=" -f2`
+vpass=`cat one_xml_config.txt | grep -i "pass" | cut -d"=" -f2`
+vrepository=`cat one_xml_config.txt | grep -i "repository" | cut -d"=" -f2`
+vdomain=`cat one_xml_config.txt | grep -i "domain" | cut -d"=" -f2`
+vgroup=`cat one_xml_config.txt | grep -i "group" | cut -d"=" -f2`
+vfolder=`cat one_xml_config.txt | grep -i "folder" | cut -d"=" -f2`
+
+
+# EXTRACTING THE OBJECTL-LIST VALUES
+vworkflow_name=`cat objectList.txt | head -n 1`
+echo $vworkflow_name
+
+ 
+echo "------------------------------------------------------------------"
+echo "+-----------SELECT THE CORRECT CHOICE TO PROCEED FURTHER---------+"
+echo "------------------------------------------------------------------"
+
+ 
+echo "-----> 1) exporting all mapping xml files from a workflow  "
+echo "-----> 2) generating list of SESSIONS dependend in workflows "
+echo "-----> 3) generating list of MAPPINGS dependend in workflows  "
+echo "-----> 4) generating list of LOOKUPS  dependend in workflows  "
+echo "-----> 5) generating list of SOURCES/TARGETS dependend in workflows "
+echo "-----> 6) generating list of WORKFLOWS from folder"
+echo "-----> 7) generating unique count of Sessions involed in folder ( wkf count should be less than 70 in folder)"
+echo "-----> 8) generating unique count of Mappings involed in folder ( wkf count should be less than 70 in folder)"
+echo "-----> Q) Quit "
+
+echo "provide response: "
+read vchoice
+
+ 
+
+case $vchoice in
+
+
+1)  ################################# existing file deleteion
+    if [ -d $vpath/'xml_files' ];then 
+		rm -r $vpath/xml_files/
+		echo "-----> Existing xml files deleted succesfully from xml_files directory !!"
+    else
+		echo "-----> No obejects to delete !!"
+    fi
+
+    ################################# informatica server connection
+    pmrep connect -r ${vrepository} -d ${vdomain} -s METNET.NET -n ${vuser} -x ${vpass}
+    pmrep ListObjectDependencies -n ${vworkflow_name} -o workflow -f ${vfolder} -p both > temp_sess_obj.txt
+
+    ################################# generating the list of dependent sessions from workflow
+    cat temp_sess_obj.txt | grep 'session' | cut -d' ' -f3 | grep "\S" >> session_list.txt
+    echo "-----> List of `cat session_list.txt | wc -l` sessions created succesfully !!"
+
+    ################################# generating the list of mappings from sessions
+    for i in `cat session_list.txt`
+    do
+        pmrep ListObjectDependencies -n $i -o session -f ${vfolder} -p both > temp_mapp_obj.txt
+        cat temp_mapp_obj.txt | grep 'mapping' | cut -d' ' -f2 >> mapping_list.txt
+    done
+    echo "-----> List of `cat mapping_list.txt | wc -l` mappings created succesfully !!"
+
+    ################################# generating the XML files for each mapping mentioned in mapping_list.txt
+    ################################# folder creation
+    if [ ! -d "xml_files" ];then
+		mkdir xml_files
+		chmod 755 xml_files
+    fi
+
+    ################################# xml file creation
+    for i in `cat mapping_list.txt`
+    do
+        pmrep objectexport -n $i -o mapping -f ${vfolder} -m -s -b -r -u xml_files/$i'.XML'
+    done
+    echo "-----> XML files are generated succesfully !!"
+
+    ################################## removing the temp files
+    rm temp_sess_obj.txt
+    rm temp_mapp_obj.txt
+    rm mapping_list.txt
+    rm session_list.txt
+    echo "-----> Script execution Completed Succesfully !!"
+    ;;
+
+
+2)  pmrep connect -r ${vrepository} -d ${vdomain} -s METNET.NET -n ${vuser} -x ${vpass}       
+    if [ -f 'session_list.txt' ]; then
+		rm session_objects.txt
+    fi
+
+    if [ -f 'objectList.txt' ]; then
+        for i in `cat objectList.txt`
+			do
+                pmrep ListObjectDependencies -n $i -o workflow -f ${vfolder} -p both > tempmapObj.txt
+				echo "Workflow: ${i}" >> session_list.txt
+				cat tempmapObj.txt | grep 'session' | cut -d' ' -f3 >> session_list.txt
+			done;
+
+		rm tempmapObj.txt
+		echo "-----> file created session_list.txt with session details !!"
+
+    else
+        echo "objectList.txt File is not presant."
+        echo "Execution terminated with ERROR !!"
+        exit 1
+    fi
+	;;
+
+
+3)  pmrep connect -r ${vrepository} -d ${vdomain} -s METNET.NET -n ${vuser} -x ${vpass}       
+    if [ -f 'mapping_list.txt' ]; then
+		rm mapping_list.txt
+    fi
+
+    if [ -f 'objectList.txt' ]; then
+        for i in `cat objectList.txt`
+        do
+            pmrep ListObjectDependencies -n $i -o workflow -f ${vfolder} -p both > tempmapObj.txt
+            echo "Workflow: ${i}" >> mapping_list.txt
+            cat tempmapObj.txt | grep 'mapping' | cut -d' ' -f2 >> mapping_list.txt
+        done;
+
+        rm tempmapObj.txt
+        if [ `cat mapping_list.txt | tr -d " \t\r " | wc -l` -gt 1 ]; then
+            echo "-----> file created mapping_list.txt with mapping details !!"
+        else
+            echo "-----> file created mapping_list.txt without any mapping details !!"
+        fi
+    else
+        echo "objectList.txt File is not presant."
+        echo "Execution terminated with ERROR !!"
+        exit 1
+    fi
+    ;;
+
+
+4)  pmrep connect -r ${vrepository} -d ${vdomain} -s METNET.NET -n ${vuser} -x ${vpass}       
+    if [ -f 'lookup_list.txt' ]; then
+		rm lookup_list.txt
+    fi
+
+    if [ -f 'objectList.txt' ]; then
+        for i in `cat objectList.txt`
+        do
+            pmrep ListObjectDependencies -n $i -o workflow -f ${vfolder} -p both > tempmapObj.txt
+			echo "Workflow: ${i}" >> lookup_list.txt
+            cat tempmapObj.txt | grep 'lookup' | cut -d' ' -f3 | cut -d'.' -f2 >> lookup_list.txt
+        done;
+
+        rm tempmapObj.txt
+        if [ `cat lookup_list.txt | wc -l` -gt 1 ]; then
+            echo "-----> file created lookup_list.txt with lookup details !!"
+        else
+            echo "-----> file created lookup_list.txt without any lookup details !!"
+        fi
+
+    else
+        echo "objectList.txt File is not presant."
+        echo "Execution terminated with ERROR !!"
+        exit 1
+    fi
+    ;;
+
+
+5)  pmrep connect -r ${vrepository} -d ${vdomain} -s METNET.NET -n ${vuser} -x ${vpass}       
+
+    if [ -f 'source_list.txt' ]; then
+		rm source_list.txt
+    fi
+
+    if [ -f 'target_list.txt' ]; then
+		rm target_list.txt
+    fi
+ 
+    if [ -f 'objectList.txt' ]; then
+        for i in `cat objectList.txt`
+        do
+            pmrep ListObjectDependencies -n $i -o workflow -f ${vfolder} -p both > tempmapObj.txt
+            echo "Workflow: ${i}" >> source_list.txt
+            cat tempmapObj.txt | grep 'source' | cut -d' ' -f2 >> source_list.txt
+        done;
+
+        rm tempmapObj.txt
+        if [ `cat source_list.txt | wc -l` -gt 1 ]; then
+            echo "-----> file created source_list.txt with mapping details !!"
+        else
+            echo "-----> file created source_list.txt without any mapping details !!"
+        fi
+    else
+        echo "objectList.txt File is not presant."
+    fi
+
+    
+
+    if [ -f 'objectList.txt' ]; then
+
+        for i in `cat objectList.txt`
+        do
+            pmrep ListObjectDependencies -n $i -o workflow -f ${vfolder} -p both > tempmapObj.txt
+            echo "Workflow: ${i}" >> target_list.txt
+            cat tempmapObj.txt | grep 'source' | cut -d' ' -f2 >> target_list.txt
+        done;
+        rm tempmapObj.txt
+		
+        if [ `cat target_list.txt | wc -l` -gt 1 ]; then
+            echo "-----> file created target_list.txt with target details !!"
+        else
+            echo "-----> file created target_list.txt without any target details !!"
+        fi
+    else
+        echo "objectList.txt File is not presant."
+        echo "Execution terminated with ERROR !!"
+        exit 1
+    fi
+    ;;
+
+
+6)  if [ -f 'workflow_list.txt' ];then
+		rm workflow_list.txt
+    fi
+
+    pmrep connect -r ${vrepository} -d ${vdomain} -s METNET.NET -n ${vuser} -x ${vpass}       
+    pmrep listobjects -o workflow -f IB_STAGING_LIFE > temp_workflow_list.txt
+    cat temp_workflow_list.txt | grep 'workflow' | cut -d' ' -f2 > workflow_list.txt
+    rm temp_workflow_list.txt
+    echo "----------> file created workflow_list.txt with workflow details !!"
+    ;;
+
+
+7)  if [ -f 'wkf_sess_Count.txt' ]; then
+    rm wkf_sess_Count.txt
+    fi
+
+    pmrep connect -r ${vrepository} -d ${vdomain} -s METNET.NET -n ${vuser} -x ${vpass}       
+    pmrep listobjects -o workflow -f IB_STAGING_LIFE > temp_workflow_list.txt
+    cat temp_workflow_list.txt | grep 'workflow' | cut -d' ' -f2 | uniq > workflow_list.txt
+    echo "total number of workflows in folder ${vfolder}: " >> wkf_sess_Count.txt
+    cat temp_workflow_list.txt | grep 'workflow' | cut -d' ' -f2 | uniq | wc -l >> wkf_sess_Count.txt
+    for i in `cat workflow_list.txt`
+    do
+        pmrep ListObjectDependencies -n $i -o workflow -f ${vfolder} -p both > tempmapObj.txt
+        echo "Workflow->Sessions: ${i}" >> wkf_sess_Count.txt
+        cat tempmapObj.txt | grep 'session' | cut -d' ' -f3 > session_list.txt
+        cat session_list.txt | wc -l | uniq >> wkf_sess_Count.txt
+    done;
+	
+    rm temp_workflow_list.txt
+    rm tempmapObj.txt
+    rm session_list.txt
+    rm workflow_list.txt
+    ;;
+
+
+8)  if [ -f 'wkf_mapp_Count.txt' ]; then
+    rm wkf_mapp_Count.txt
+    fi
+
+    pmrep connect -r ${vrepository} -d ${vdomain} -s METNET.NET -n ${vuser} -x ${vpass}       
+    pmrep listobjects -o workflow -f IB_STAGING_LIFE > temp_workflow_list.txt
+    cat temp_workflow_list.txt | grep 'workflow' | cut -d' ' -f2 | uniq > workflow_list.txt
+    echo "total number of workflows in folder ${vfolder}: " >> wkf_mapp_Count.txt
+    cat temp_workflow_list.txt | grep 'workflow' | cut -d' ' -f2 | uniq | wc -l >> wkf_mapp_Count.txt   
+    for i in `cat workflow_list.txt`
+    do
+        pmrep ListObjectDependencies -n $i -o workflow -f ${vfolder} -p both > tempmapObj.txt
+        echo "Workflow->Mappings: ${i}" >> wkf_mapp_Count.txt
+        cat tempmapObj.txt | grep 'mapping' | cut -d' ' -f2 > mapping_list.txt
+        cat mapping_list.txt | wc -l | uniq >> wkf_mapp_Count.txt
+    done;
+
+    rm tempmapObj.txt
+    rm mapping_list.txt
+    rm workflow_list.txt
+	;;
+
+
+*)  echo "Invalid selection!!"
+    echo "Execution terminated with ERROR !!"
+    exit 1
+    ;;
+	
+esac
+
+echo "------> Script execution completed successfully"

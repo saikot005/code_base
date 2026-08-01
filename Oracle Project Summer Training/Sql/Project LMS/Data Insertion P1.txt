@@ -1,0 +1,17 @@
+set serveroutput on
+
+create or replace procedure addmem(m_name varchar2,contact number,designtn varchar2,reg number,joined date) is 
+
+begin
+insert into registration2017(name,contact_no,designation,reg_no,joining_date)
+values(m_name,contact,designtn,reg,joined);
+dbms_output.put_line('-----------------------------------------------------------');
+dbms_output.put_line('*********Registration Successful***********');
+dbms_output.put_line('------------------------------------------------------------');
+dbms_output.put_line('Thank You be a part of this Book-World :-) ');
+
+exception
+when no_data_found then
+dbms_output.put_line('user not created');
+end;
+/

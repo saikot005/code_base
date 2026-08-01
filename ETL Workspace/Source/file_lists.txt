@@ -1,0 +1,2 @@
+PATH
+C:\Users\saiko\Documents\Informatica_Files\Sources\sample4.json

@@ -1,0 +1,11 @@
+
+id,name,col
+1,name1,a
+1,name1,b
+1,name1,c
+2,name2,b
+2,name2,c
+2,name2,d
+2,name2,e
+3,name3,a
+3,name3,c

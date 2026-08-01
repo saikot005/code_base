@@ -1,0 +1,198 @@
+The create table command defines each column of the table uniquely. Each column has minimum of three attributes.
+Name
+Data type
+Size(column width).
+Each table column definition is a single clause in the create table syntax. Each table column definition is separated from the other by a comma. Finally, the SQL statement is terminated with a semicolon.
+
+The Structure of Create Table Command
+
+Table name is Student
+ Column name
+Data type
+ Size
+ Reg_no	 varchar2	 10
+ Name	 char	 30
+ DOB    	 date	 
+ Address	 varchar2	 50
+
+Example:
+
+CREATE TABLE Student
+             (Reg_no varchar2(10),
+              Name char(30),
+              DOB date,
+              Address varchar2(50));
+
+
+The DROP Command
+
+Syntax:
+DROP TABLE <table_name>
+
+Example:
+DROP TABLE Student;
+It will destroy the table and all data which will be recorded in it.
+
+
+The TRUNCATE Command
+
+Syntax:
+TRUNCATE TABLE <Table_name>
+
+Example:
+TRUNCATE TABLE Student;
+
+
+The RENAME Command
+
+Syntax:
+RENAME <OldTableName> TO <NewTableName>
+
+Example:
+RENAME <Student> TO <Stu>
+
+The old name table was Student now new name is the Stu.
+
+
+The ALTER Table Command
+
+By The use of ALTER TABLE Command we can modify our exiting table.
+
+Adding New Columns
+
+Syntax: 
+ALTER TABLE <table_name>
+         ADD (<NewColumnName> <Data_Type>(<size>),......n)
+
+Example:
+ALTER TABLE Student ADD (Age number(2), Marks number(3));
+
+The Student table is already exist and then we added two more columns Age and Marks respectively, by the use of above command.
+
+Dropping a Column from the Table
+
+Syntax:
+ALTER TABLE <table_name> DROP COLUMN <column_name>
+
+Example:
+ALTER TABLE Student DROP COLUMN Age;
+
+This command will drop particular column 
+
+Modifying Existing Table
+
+Syntax:
+ALTER TABLE <table_name> MODIFY (<column_name> <NewDataType>(<NewSize>))
+
+Example:
+ALTER TABLE Student MODIFY (Name Varchar2(40));
+
+The Name column already exist in Student table, it was char and size 30, now it is modified by Varchar2 and size 40.
+
+Restriction on the ALTER TABLE
+
+Using the ALTER TABLE clause the following tasks cannot be performed.
+Change the name of the table
+Change the name of the column
+Decrease the size of a column if table data exists:
+
+===============================================================
+DML
+
+Viewing Data in the Table (Select Command)
+
+Once data has been inserted into a table, the next most logical operation would be to view what has been inserted. The SELECT SQL verb is used to achieve this.
+
+All Rows and All Columns
+
+Syntax:   SELECT * FROM Table_name;
+
+eg:  Select * from Student;   It will show all the table records.
+
+
+SELECT First_name, DOB FROM STUDENT WHERE Reg_no = 'S101'; Cover it by single inverted comma if its datatype is varchar or char.
+
+This Command will show one row. because you have given condition for only one row and particular records. If condition which has given in WHERE Clause is true then records will be fetched otherwise it will show no records selected.
+
+Eliminating Duplicates:
+
+A table could hold duplicate rows. In such a case, you can eliminate duplicates.
+
+Syntax: SELECT DISTINCT col, col, .., FROM table_name;
+
+eg :   SELECT DISTINCT * FROM Student;
+
+or :  SELECT DISTINCT first_name, city, pincode FROM Student;
+
+It scans through entire rows, and eliminates rows that have exactly the same contents in each column.
+
+Sorting DATA:
+
+The Rows retrieved from the table will be sorted in either Ascending or Descending order depending on the condition specified in select statement, the Keyword has used ORDER BY.
+
+SELECT * FROM Student 
+ORDER BY First_Name;
+
+it will in show records as alphabetical order from A to Z ascending order. If you want Descending order means Z to A then used DESC Keyword at last. 
+ 
+eg : SELECT first_name, city,pincode FROM Student 
+       ORDER BY First_name DESC;
+
+
+-------------------------------------
+insert:
+
+More than one are there to Insert data into a table
+
+eg:     INSERT INTO student (reg_no, first_name, last_name, dob,address, pincode)
+             VALUES('A101', 'Mohd', 'Imran', '01-MAR-89','Allahabad', 211001);
+
+eg :     INSERT INTO student VALUES('A101', 'Mohd', 'Imran', '01-MAR-89','Allahabad', 211001);
+
+Note :  Character expression placed within the insert into statement must be enclosed in single quotes (').
+
+
+Inserting data into a table from another table:
+
+In addition to inserting data one row at a time into a table, it is quite possible to populate a table with data that already exist in another table. You can store same record in a table that already stored in another table.
+
+Eg : suppose  you want to insert data from course table to university table then use this example:
+
+INSERT INTO  university SELECT course_id, course_name FROM course;
+
+Data will be inserted into university table automatically, what will be in course table. 
+
+you can give condition also in WHERE clause.
+
+
+DELETE Operation:
+
+The DELETE command can remove all the rows from the table or a set of rows from the table.
+
+eg: DELETE FROM student;  It will DELETE all the rows from student table.
+
+eg: DELETE FROM student WHERE reg_no='A101';  If condition will be satisfied then it will delete a row from the table Register number A101 will be deleted from the table 
+
+If you want to delete table column then use ALTER TABLE command.
+
+eg :  ALTER TABLE student DROP COLUMN dob; The DOB column will be deleted from the student table.
+
+
+UPDATE Operation:
+
+The UPDATE command is used to change or modify data values in a table and UPDATE command can Update all the rows from the table or a set of rows from the table.
+
+eg : UPDATE Student SET course='MCA';  
+
+Course is a column name, suppose ant time you want to update something like that in the student table course should be MCA for all students then you can use this type of query. It will update all the rows in the table all rows will have MCA course. 
+
+Now, if you want update particular row then see below.
+
+UPDATE Student SET course='MCA' where reg_no='A101';   it will update only one row that will have Register no. A101. 
+
+you can use different-different types of condition in WHERE clause, eg salary updation, if salary has increased someone's then simply multiply, addition you can do in salary column.
+ 
+I will show example. Suppose someone's has increased salary by 10% then what should to do. See example:
+
+UPDATE employee SET salary= salary+salary*0.1 WHERE employee_id='E101'; Salary will be automatically increased by 10% of salary.  
+  

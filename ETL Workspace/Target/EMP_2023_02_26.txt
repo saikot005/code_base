@@ -1,0 +1,8 @@
+"EMPLOYEE_ID","FIRST_NAME","LAST_NAME","EMAIL","PHONE_NUMBER","HIRE_DATE","JOB_ID","SALARY","COMMISSION_PCT","MANAGER_ID","DEPARTMENT_ID","o_seqId"
+"100","Steven","King","SKING","515.123.4567","17-JUN-03","AD_PRES","24000"," - "," - ","90",1
+"101","Neena","Kochhar","NKOCHHAR","515.123.4568","21-SEP-05","AD_VP","17000"," - ","100","90",2
+"102","Lex","De Haan","LDEHAAN","515.123.4569","13-JAN-01","AD_VP","17000"," - ","100","90",3
+"103","Alexander","Hunold","AHUNOLD","590.423.4567","03-JAN-06","IT_PROG","9000"," - ","102","60",4
+"104","Bruce","Ernst","BERNST","590.423.4568","21-MAY-07","IT_PROG","6000"," - ","103","60",5
+"105","David","Austin","DAUSTIN","590.423.4569","25-JUN-05","IT_PROG","4800"," - ","103","60",6
+"106","Valli","Pataballa","VPATABAL","590.423.4560","05-FEB-06","IT_PROG","4800"," - ","103","60",7

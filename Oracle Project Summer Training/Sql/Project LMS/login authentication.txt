@@ -1,0 +1,18 @@
+set serveroutput on
+create or replace function log_in(a varchar2,b number) return varchar2 as
+c number;
+
+begin
+select count(*) into c from login
+where user_name=a and password=b;
+if c=0 then
+return 'Invalid user_name and Password. We recommand you please Sign-up first ';
+
+elsif c=1 then
+return '  Login Successfull  '||' Hello '||a;
+
+else 
+return ' permission not granted';
+end if;
+end;
+/

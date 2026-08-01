@@ -1,0 +1,6 @@
+name~|age
+fname1,lname1~|25
+fname2,lname2~|26
+fname3,lname3~|27
+fname4,lname3~|28
+fname5,lname5~|29

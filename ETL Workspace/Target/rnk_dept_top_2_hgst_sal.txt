@@ -1,0 +1,21 @@
+RANKINDEX,EMPLOYEE_ID,SALARY,DEPARTMENT_ID,FULL_NAME
+1,200,4400.00,10,Jennifer Whalen
+1,201,13000.00,20,Michael Hartstein
+2,202,6000.00,20,Pat Fay
+1,114,11000.00,30,Den Raphaely
+2,115,3100.00,30,Alexander Khoo
+1,203,6500.00,40,Susan Mavris
+1,121,8200.00,50,Adam Fripp
+2,120,8000.00,50,Matthew Weiss
+1,103,9000.00,60,Alexander Hunold
+2,104,6000.00,60,Bruce Ernst
+1,204,10000.00,70,Hermann Baer
+1,145,14000.00,80,John Russell
+2,146,13500.00,80,Karen Partners
+1,100,24000.00,90,Steven King
+2,101,17000.00,90,Neena Kochhar
+1,108,12008.00,100,Nancy Greenberg
+2,109,9000.00,100,Daniel Faviet
+1,205,12008.00,110,Shelley Higgins
+2,206,8300.00,110,William Gietz
+1,178,7000.00,,Kimberely Grant

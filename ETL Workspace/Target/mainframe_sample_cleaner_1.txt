@@ -1,0 +1,6 @@
+CUSTID,CUSTOMER_NAME,STREET,ADDRESS,CITY,STATE_ZIP,o_rec_count,instr_val
+HEADER,,,,,,1,1
+1234,Jane Doe,123 Elm St,Fall River,MA,02771,2,0
+HEADER2345,Ann Smith,45 Oak St,Braintree,MA,02184,3,1
+3456,Susan Ash,234 Maple St,Weymouth,MA,02180,4,0
+TRAILER 10022023,,,,,,5,0
