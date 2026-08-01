@@ -1,0 +1,71 @@
+{
+    "company": "ABC Company",
+    "department": "Data Engineering",
+    "employees": [
+        {
+            "first_name": "Aarav",
+            "last_name": "Sharma",
+            "age": 31,
+            "joining_date": "2019-06-15",
+            "email_id": "aarav.sharma@abc.com",
+            "phone_number": "+1-415-555-0141",
+            "designation": "Senior Data Engineer",
+            "city": "Austin",
+            "state": "Texas",
+            "salary": 145000,
+            "marital_status": "Married"
+        },
+        {
+            "first_name": "Priya",
+            "last_name": "Nair",
+            "age": 28,
+            "joining_date": "2021-02-10",
+            "email_id": "priya.nair@abc.com",
+            "phone_number": "+1-646-555-0182",
+            "designation": "Data Engineer",
+            "city": "New York",
+            "state": "New York",
+            "salary": 118000,
+            "marital_status": "Single"
+        },
+        {
+            "first_name": "Daniel",
+            "last_name": "Kim",
+            "age": 35,
+            "joining_date": "2017-11-22",
+            "email_id": "daniel.kim@abc.com",
+            "phone_number": "+1-312-555-0165",
+            "designation": "Lead Data Engineer",
+            "city": "Chicago",
+            "state": "Illinois",
+            "salary": 162000,
+            "marital_status": "Married"
+        },
+        {
+            "first_name": "Meera",
+            "last_name": "Patel",
+            "age": 29,
+            "joining_date": "2022-07-03",
+            "email_id": "meera.patel@abc.com",
+            "phone_number": "+1-650-555-0198",
+            "designation": "ETL Developer",
+            "city": "Seattle",
+            "state": "Washington",
+            "salary": 109000,
+            "marital_status": "Single"
+        },
+        {
+            "first_name": "Liam",
+            "last_name": "Johnson",
+            "age": 33,
+            "joining_date": "2018-09-12",
+            "email_id": "liam.johnson@abc.com",
+            "phone_number": "+1-703-555-0123",
+            "designation": "Data Platform Engineer",
+            "city": "Arlington",
+            "state": "Virginia",
+            "salary": 138000,
+            "marital_status": "Married"
+        }
+    ]
+}
