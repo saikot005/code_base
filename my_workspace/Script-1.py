@@ -4,3 +4,4 @@ def test(msg):
 print(test("Saikot"))
 print(test("Sam"))
 print(test("Alex"))
+print(test("John"))
