@@ -1,47 +1,50 @@
-﻿Project Name,Task Name,Assigned to,Start Date,Days Required,End Date,Progress,age,salary
-Marketing,Market Research,Alice,01-01-2024,13,14-01-2024,78%,34,82000
-Marketing,Content Creation,Bob,14-01-2024,14,28-01-2024,100%,29,64000
-Marketing,Social Media Planning,Charlie,28-01-2024,22,19-02-2024,45%,41,97000
-Marketing,Campaign Analysis,Daisy,18-02-2024,25,14-03-2024,0%,26,58000
-Product Dev,Prototype Development,Ethan,02-01-2024,18,20-01-2024,100%,37,110000
-Product Dev,Quality Assurance,Fiona,20-01-2024,10,30-01-2024,78%,32,76000
-Product Dev,User Interface Design,Gabriel,04-02-2024,25,29-02-2024,0%,28,69000
-Customer Svc,Service Improvement,Hannah,01-02-2024,22,23-02-2024,100%,45,102000
-Customer Svc,Ticket Resolution,Ian,24-02-2024,25,20-03-2024,100%,24,51000
-Customer Svc,Customer Feedback,Julia,21-03-2024,30,20-04-2024,0%,39,88000
-Financial,Budget Analysis,Kevin,02-02-2024,22,24-02-2024,10%,52,125000
-Financial,Financial Reporting,Mark,13-02-2024,21,09-02-2024,78%,43,118000
-Financial,Investment Planning,Mark,19-03-2024,25,13-04-2024,100%,36,94000
-Research,Market Trends Analysis,Nathan,02-01-2024,23,25-01-2024,50%,31,73000
-Research,Data Collection,Olivia,26-01-2024,32,27-02-2024,0%,27,67000
-Research,Research Paper Writing,Peter,28-02-2024,27,26-03-2024,0%,48,99000
-Development,Software Development,Quinn,02-01-2024,36,07-02-2024,100%,33,105000
-Development,Feature Enhancement,Rachel,08-02-2024,34,13-03-2024,0%,30,83000
-Development,Code Review,Sam,14-03-2024,30,13-04-2024,0%,42,112000
-Production,Manufacturing,Tim,03-01-2024,47,19-02-2024,30%,55,130000
-Production,Quality Control,Ursula,17-02-2024,27,15-03-2024,0%,38,91000
-Production,Packaging Design,Victor,14-03-2024,22,05-04-2024,0%,25,62000
-Sales,Lead Generation,Wendy,03-01-2024,60,03-03-2024,70%,35,87000
-Sales,Client Meetings,Xavier,06-01-2024,20,26-01-2024,78%,46,108000
-Sales,Contract Negotiation,Yvette,03-02-2024,35,09-03-2024,0%,40,96000
-Support,Technical Support,Zoe,01-01-2024,25,26-01-2024,100%,23,54000
-Support,Bug Fixes,Aaron,27-01-2024,31,27-02-2024,100%,29,72000
-Support,Software Updates,Bella,02-03-2024,22,24-03-2024,0%,34,79000
-Operations,Process Optimization,Calvin,03-01-2024,30,02-02-2024,40%,44,115000
-Operations,Inventory Management,Diane,03-02-2024,25,28-02-2024,0%,37,84000
-Operations,Facility Maintenance,Edward,29-02-2024,20,20-03-2024,0%,50,121000
-Consulting,Strategic Planning,Fiona,02-01-2024,35,06-02-2024,60%,28,66000
-Consulting,Market Expansion,Gary,02-02-2024,32,05-03-2024,0%,41,98000
-Consulting,Client Advisory,Helen,06-03-2024,25,31-03-2024,0%,32,89000
-Training,Employee Training,Isaac,04-01-2024,27,31-01-2024,80%,26,61000
-Training,Certification Programs,Jane,28-01-2024,30,27-02-2024,0%,39,93000
-Training,Skill Development,Kyle,28-02-2024,22,21-03-2024,0%,31,75000
-Events,Event Planning,Laura,03-01-2024,25,28-01-2024,30%,45,101000
-Events,Conference Management,Mike,03-02-2024,20,23-02-2024,0%,36,86000
-Events,Sponsorship Coordinatio,n Nancy,24-02-2024,35,30-03-2024,0%,33,68000
-Logistics,Supply Chain Management,Oscar,03-01-2024,25,28-01-2024,50%,42,107000
-Logistics,Transportation Planning,Patricia,29-01-2024,30,28-02-2024,100%,47,116000
-Logistics,Inventory Optimization,Quentin,29-03-2024,20,18-04-2024,0%,30,78000
-Engineering,Product Design,Rachel,02-01-2024,25,27-01-2024,20%,35,99000
-Engineering,System Integration,Sam,02-02-2024,22,24-02-2024,0%,27,71000
-Engineering,Prototype Testing,Tom,23-02-2024,27,21-03-2024,0%,40,
+﻿EID,Project Name,Task Name,Assigned to,Start Date,Days Required,End Date,Progress,age,salary
+1,Marketing,Market Research,Alice,01-01-2024,13,14-01-2024,78%,34,82000
+2,Marketing,Content Creation,Bob,14-01-2024,14,28-01-2024,100%,29,64000
+3,Marketing,Social Media Planning,Charlie,28-01-2024,22,19-02-2024,45%,41,97000
+4,Marketing,Campaign Analysis,Daisy,18-02-2024,25,14-03-2024,0%,26,58000
+5,Product Dev,Prototype Development,Ethan,02-01-2024,18,20-01-2024,100%,37,110000
+6,Product Dev,Quality Assurance,Fiona,20-01-2024,10,30-01-2024,78%,32,76000
+7,Product Dev,User Interface Design,Gabriel,04-02-2024,25,29-02-2024,0%,28,69000
+8,Customer Svc,Service Improvement,Hannah,01-02-2024,22,23-02-2024,100%,45,102000
+9,Customer Svc,Ticket Resolution,Ian,24-02-2024,25,20-03-2024,100%,24,51000
+10,Customer Svc,Customer Feedback,Julia,21-03-2024,30,20-04-2024,0%,39,88000
+11,Financial,Budget Analysis,Kevin,02-02-2024,22,24-02-2024,10%,52,125000
+12,Financial,Financial Reporting,Mark,13-02-2024,21,09-02-2024,78%,43,118000
+13,Financial,Investment Planning,Mark,19-03-2024,25,13-04-2024,100%,36,94000
+14,Research,Market Trends Analysis,Nathan,02-01-2024,23,25-01-2024,50%,31,73000
+15,Research,Data Collection,Olivia,26-01-2024,32,27-02-2024,0%,27,67000
+16,Research,Research Paper Writing,Peter,28-02-2024,27,26-03-2024,0%,48,99000
+17,Development,Software Development,Quinn,02-01-2024,36,07-02-2024,100%,33,105000
+18,Development,Feature Enhancement,Rachel,08-02-2024,34,13-03-2024,0%,30,83000
+19,Development,Code Review,Sam,14-03-2024,30,13-04-2024,0%,42,112000
+20,Production,Manufacturing,Tim,03-01-2024,47,19-02-2024,30%,55,130000
+21,Production,Quality Control,Ursula,17-02-2024,27,15-03-2024,0%,38,91000
+22,Production,Packaging Design,Victor,14-03-2024,22,05-04-2024,0%,25,62000
+23,Sales,Lead Generation,Wendy,03-01-2024,60,03-03-2024,70%,35,87000
+24,Sales,Client Meetings,Xavier,06-01-2024,20,26-01-2024,78%,46,108000
+25,Sales,Contract Negotiation,Yvette,03-02-2024,35,09-03-2024,0%,40,96000
+26,Support,Technical Support,Zoe,01-01-2024,25,26-01-2024,100%,23,54000
+27,Support,Bug Fixes,Aaron,27-01-2024,31,27-02-2024,100%,29,72000
+28,Support,Software Updates,Bella,02-03-2024,22,24-03-2024,0%,34,79000
+29,Operations,Process Optimization,Calvin,03-01-2024,30,02-02-2024,40%,44,115000
+30,Operations,Inventory Management,Diane,03-02-2024,25,28-02-2024,0%,37,84000
+31,Operations,Facility Maintenance,Edward,29-02-2024,20,20-03-2024,0%,50,121000
+32,Consulting,Strategic Planning,Fiona,02-01-2024,35,06-02-2024,60%,28,66000
+33,Consulting,Market Expansion,Gary,02-02-2024,32,05-03-2024,0%,41,98000
+34,Consulting,Client Advisory,Helen,06-03-2024,25,31-03-2024,0%,32,89000
+35,Training,Employee Training,Isaac,04-01-2024,27,31-01-2024,80%,26,61000
+36,Training,Certification Programs,Jane,28-01-2024,30,27-02-2024,0%,39,93000
+37,Training,Skill Development,Kyle,28-02-2024,22,21-03-2024,0%,31,75000
+38,Events,Event Planning,Laura,03-01-2024,25,28-01-2024,30%,45,101000
+39,Events,Conference Management,Mike,03-02-2024,20,23-02-2024,0%,36,86000
+40,Events,Sponsorship Coordinatio,n Nancy,24-02-2024,35,30-03-2024,0%,33,68000
+41,Logistics,Supply Chain Management,Oscar,03-01-2024,25,28-01-2024,50%,42,107000
+42,Logistics,Transportation Planning,Patricia,29-01-2024,30,28-02-2024,100%,47,116000
+43,Logistics,Inventory Optimization,Quentin,29-03-2024,20,18-04-2024,0%,30,78000
+44,Engineering,Product Design,Rachel,02-01-2024,25,27-01-2024,20%,35,99000
+45,Engineering,System Integration,Sam,02-02-2024,22,24-02-2024,0%,27,71000
+46,Engineering,Prototype Testing,Tom,23-02-2024,27,21-03-2024,0%,40,
+46,Engineering,Prototype Testing,Tom,23-02-2024,27,21-03-2024,0%,40,100
+46,Engineering,Prototype Testing,Tom,23-02-2024,27,21-03-2024,0%,40,100
+46,Engineering,Prototype Testing,Tom,23-02-2024,27,21-03-2024,0%,40,300
